@@ -30,8 +30,8 @@ jobs:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ env.php-versions }}-${{ hashFiles('**/composer.json') }}
           restore-keys: |
-            ${{ runner.os }}-composer1-${{ env.php-versions }}-
-            ${{ runner.os }}-composer1-
+            ${{ runner.os }}-composer-${{ env.php-versions }}-
+            ${{ runner.os }}-composer-
 
       - name: Install dependencies
         run: composer update --prefer-dist --no-progress --ignore-platform-reqs --no-scripts
