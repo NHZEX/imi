@@ -22,7 +22,7 @@
         "swoole/ide-helper": "^4.6",
         "phpunit/phpunit": ">=7",
         "friendsofphp/php-cs-fixer": "^2.19",
-        "phpstan/phpstan": "0.12.82"
+        "phpstan/phpstan": "^0.12.82"
     },
     "autoload": {
         "psr-4": {
