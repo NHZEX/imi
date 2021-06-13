@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-20.04
     env:
       fail-fast: true
-      ext-key: cache-v1
+      cache-key: cache-v1
       php-versions: 7.4
       extensions: sockets, curl, hprose, swoole-swoole/swoole-src@v4.6.7
       SWOOLE_CONFIGURE_OPTS: >-
@@ -22,8 +22,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Setup cache environment
+        id: extcache
+        uses: shivammathur/cache-extensions@v1
+        with:
+          php-version: ${{ env.php-versions }}
+          extensions: ${{ env.extensions }}
+          key: ${{ env.cache-key }}
+
+      - name: Cache extensions
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.extcache.outputs.dir }}
+          key: ${{ steps.extcache.outputs.key }}
+          restore-keys: ${{ steps.extcache.outputs.key }}
+
       - name: Setup PHP
-        uses: shivammathur/setup-php@verbose
+        uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ env.php-versions }}
           extensions: ${{ env.extensions }}
@@ -46,10 +61,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ env.SWOOLE_DOCKER_VERSION }}-${{ hashFiles('**/composer.json') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-${{ env.SWOOLE_DOCKER_VERSION }}-
-            ${{ runner.os }}-composer-
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ runner.os }}-composer-
 
       - name: Cache analyse
         uses: actions/cache@v2
