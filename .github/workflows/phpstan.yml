@@ -6,11 +6,37 @@ jobs:
   tests:
     runs-on: ubuntu-20.04
     env:
-      SWOOLE_DOCKER_VERSION: 4.6-php7.4
-      ENV_SERVICE: swoole-only
+      fail-fast: true
+      ext-key: cache-v1
+      php-versions: 7.4
+      extensions: sockets, curl, hprose, swoole-swoole/swoole-src@v4.6.7
+      SWOOLE_CONFIGURE_OPTS: >-
+        --enable-openssl
+        --enable-http2
+        --enable-mysqlnd
+        --enable-sockets
+        --enable-swoole-curl
+        --enable-swoole-json
+      SWOOLE_LINUX_LIBS: libcurl4-openssl-dev
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@verbose
+        with:
+          php-version: ${{ env.php-versions }}
+          extensions: ${{ env.extensions }}
+          tools: pecl, composer:v2
+          coverage: none
+        env:
+          COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Show Version
+        run: |
+          composer -V
+          php -m
+          php --ri swoole
 
       - name: Cache dependencies
         uses: actions/cache@v2
@@ -28,21 +54,12 @@ jobs:
           key: phpstan-analyse
           restore-keys: phpstan-analyse
 
-      - name: Cache docker
-        uses: satackey/action-docker-layer-caching@v0.0.11
-        # Ignore the failure of a step and avoid terminating the job.
-        continue-on-error: true
-
-      - name: Prepare
+      - name: Install dependencies
         run: |
-          docker-compose -f ./.github/docker-compose.yml up -d ${ENV_SERVICE}
-          docker exec ${ENV_SERVICE} php -v \
-            && php -m \
-            && php --ri swoole \
-            && composer -V
-          docker exec ${ENV_SERVICE} composer update --no-interaction --prefer-dist --no-progress
-          docker exec ${ENV_SERVICE} bash -c "cd split-repository && composer install --no-interaction --prefer-dist --no-progress"
+          composer update --no-interaction --prefer-dist --no-progress
+          cd split-repository
+          composer install --no-interaction --prefer-dist --no-progress
 
       - name: Analyse
         run: |
-          docker exec ${ENV_SERVICE} ./vendor/bin/phpstan analyse --memory-limit 1G
+          ./vendor/bin/phpstan analyse --memory-limit 1G
