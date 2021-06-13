@@ -9,7 +9,7 @@ jobs:
       fail-fast: true
       cache-key: cache-v1
       php-versions: 7.4
-      extensions: sockets, curl, hprose, swoole-swoole/swoole-src@v4.6.7
+      extensions: sockets, curl, hprose, swoole
       SWOOLE_CONFIGURE_OPTS: >-
         --enable-openssl
         --enable-http2
