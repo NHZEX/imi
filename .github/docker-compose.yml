@@ -154,11 +154,7 @@ services:
 
   swoole-only:
     container_name: "swoole-only"
-    build:
-      context: .
-      dockerfile: swoole.dockerfile
-      args:
-        SWOOLE_DOCKER_VERSION: ${SWOOLE_DOCKER_VERSION}
+    image: ${SWOOLE_IMAGE}
     volumes:
       - "${GITHUB_WORKSPACE}:/imi:rw"
       - "/tmp/composer:/root/.composer/cache/files:rw"
