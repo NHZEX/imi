@@ -7,7 +7,6 @@ jobs:
     runs-on: ubuntu-20.04
     env:
       SWOOLE_IMAGE: ghcr.io/nhzex/php-docker2:4.7-php7.4
-      SWOOLE_DOCKER_VERSION: 4.7-php7.4
       ENV_SERVICE: swoole-only
     steps:
       - name: Checkout
