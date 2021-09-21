@@ -12,24 +12,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Setup Services
+        run: |
+          docker-compose -f ./.github/php-only.dc.yml up -d
+          docker-compose -f ./.github/php-only.dc.yml ps
+          docker ps
+
       - name: Prepare
         run: |
-          docker run --rm ghcr.io/nhzex/php-docker2:4.7-php7.4 php -v
-          docker run --rm ghcr.io/nhzex/php-docker2:4.7-php7.4 php --ri swoole
-          docker-compose -f ./.github/docker-compose.yml up -d ${ENV_SERVICE}
-          docker ps
-          docker exec ${ENV_SERVICE} php -v \
-            && php -m \
-            && php --ri swoole \
-            && composer -V
-          docker exec ${ENV_SERVICE} composer update --no-interaction --prefer-dist --no-progress
+          docker exec swoole-only php -v
+          docker exec swoole-only php -m
+          docker exec swoole-only php --ri swoole
+          docker exec swoole-only composer update --no-interaction --prefer-dist --no-progress
+          docker exec swoole-only bash -c "cd split-repository && composer install --no-interaction --prefer-dist --no-progress"
 
       - name: Analyse
         run: |
-          docker exec ${ENV_SERVICE} ./vendor/bin/phpstan analyse --memory-limit 1G
-
-      - name: Stop Service
-        if: always()
-        continue-on-error: true
-        run: |
-          docker-compose -f ./.github/docker-compose.yml down
+          docker exec swoole-only ./vendor/bin/phpstan analyse --memory-limit 1G
