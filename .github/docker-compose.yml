@@ -145,13 +145,10 @@ services:
 
   swoole-only:
     container_name: "swoole-only"
-    image: ghcr.io/nhzex/php-docker2:4.7-php7.4
+    image: ${PHP_IMAGE}
     volumes:
       - "${GITHUB_WORKSPACE}:/imi:rw"
       - "/tmp/composer:/root/.composer/cache/files:rw"
       - "/tmp/phpstan:/tmp/phpstan:rw"
     working_dir: /imi
-    ulimits:
-      core: -1
-    privileged: true
-    command: tail -f /etc/group
+    command: tail -f /dev/null
