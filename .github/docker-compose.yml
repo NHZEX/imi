@@ -129,7 +129,7 @@ services:
       MYSQL_SERVER_PASSWORD: ""
       AMQP_SERVER_HOST: "rabbitmq"
       KAFKA_BOOTSTRAP_SERVERS: "kafka1:9092"
-    image: ghcr.io/nhzex/php-docker2:${SWOOLE_VER}
+    image: ${PHP_IMAGE}
     volumes:
       - "${GITHUB_WORKSPACE}:/imi:rw"
       - "/tmp/composer:/root/.composer/cache/files:rw"
