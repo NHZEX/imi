@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eux
+set -ex
 
 if [ -n "${PHP_JIT}" ]; then
   echo "opcache.enable_cli=1" >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini

@@ -98,6 +98,7 @@ services:
       - kafka1
       - postgres
     environment:
+      PHP_JIT: ${PHP_JIT}
       MYSQL_SERVER_HOST: mysql
       REDIS_SERVER_HOST: ${REDIS_SERVER_HOST}
       REDIS_SERVER_UNIX: /tmp/docker/redis.sock
@@ -113,32 +114,32 @@ services:
     working_dir: /imi
     command: tail -f /dev/null
 
-  swoole-php8:
-    container_name: "swoole-php8"
-    depends_on:
-      - shared-tmp
-      - mysql
-      - redis
-      - rabbitmq
-      - kafka1
-      - postgres
-    environment:
-      MYSQL_SERVER_HOST: mysql
-      REDIS_SERVER_HOST: ${REDIS_SERVER_HOST}
-      PGSQL_SERVER_HOST: postgres
-      MYSQL_SERVER_PASSWORD: ""
-      AMQP_SERVER_HOST: "rabbitmq"
-      KAFKA_BOOTSTRAP_SERVERS: "kafka1:9092"
-    image: ${PHP_IMAGE}
-    volumes:
-      - "${GITHUB_WORKSPACE}:/imi:rw"
-      - "/tmp/composer:/root/.composer/cache/files:rw"
-      - shared-volume:/tmp/docker
-    working_dir: /imi
-    ulimits:
-      core: -1
-    privileged: true
-    command: tail -f /etc/group
+#  swoole-php8:
+#    container_name: "swoole-php8"
+#    depends_on:
+#      - shared-tmp
+#      - mysql
+#      - redis
+#      - rabbitmq
+#      - kafka1
+#      - postgres
+#    environment:
+#      MYSQL_SERVER_HOST: mysql
+#      REDIS_SERVER_HOST: ${REDIS_SERVER_HOST}
+#      PGSQL_SERVER_HOST: postgres
+#      MYSQL_SERVER_PASSWORD: ""
+#      AMQP_SERVER_HOST: "rabbitmq"
+#      KAFKA_BOOTSTRAP_SERVERS: "kafka1:9092"
+#    image: ${PHP_IMAGE}
+#    volumes:
+#      - "${GITHUB_WORKSPACE}:/imi:rw"
+#      - "/tmp/composer:/root/.composer/cache/files:rw"
+#      - shared-volume:/tmp/docker
+#    working_dir: /imi
+#    ulimits:
+#      core: -1
+#    privileged: true
+#    command: tail -f /etc/group
 
   swoole-only:
     container_name: "swoole-only"

@@ -12,7 +12,7 @@ jobs:
         mysql: [8.0]
     env:
       PHP_JIT: yes
-      ENV_SERVICE: swoole-php8
+      ENV_SERVICE: swoole
       PHP_IMAGE: ghcr.io/nhzex/php-docker2:${{ matrix.swoole }}
       MYSQL_DOCKER_VERSION: ${{ matrix.mysql }}
       REDIS_SERVER_HOST: redis
