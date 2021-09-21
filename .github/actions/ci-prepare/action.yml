@@ -13,10 +13,11 @@ runs:
       shell: bash
       run: |
         docker-compose -f ./.github/docker-compose.yml up -d ${{ inputs.env }}
+        docker exec ${{ inputs.env }} bash /imi/.github/php-jit.sh
         docker exec ${{ inputs.env }} php -v
         docker exec ${{ inputs.env }} php -v php -m
         docker exec ${{ inputs.env }} php --ri swoole
-        docker exec ${{ inputs.env }} php -r "echo 'opcache config: '; print_r(opcache_get_status(false));"
+        docker exec ${{ inputs.env }} php -r "echo 'opcache config: '; print_r(opcache_get_status(false) ?: 'false'); echo PHP_EOL;"
         docker exec ${{ inputs.env }} composer -V
     - name: Prepare
       shell: bash

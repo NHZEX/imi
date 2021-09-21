@@ -3,61 +3,62 @@ name: ci
 on: [push, pull_request]
 
 jobs:
-#  ci-php8-jit:
-#    runs-on: ubuntu-20.04
-#    strategy:
-#      fail-fast: false
-#      matrix:
-#        swoole: [4.7-php8.0]
-#        mysql: [8.0]
-#    env:
-#      SWOOLE_DOCKER_VERSION: ${{ matrix.swoole }}
-#      MYSQL_DOCKER_VERSION: ${{ matrix.mysql }}
-#      ENV_SERVICE: swoole-php8
-#      REDIS_SERVER_HOST: redis
-#    steps:
-#      - name: Checkout
-#        uses: actions/checkout@v2
-#      - name: Cache dependencies
-#        uses: actions/cache@v2
-#        with:
-#          path: /tmp/composer
-#          key: ${{ runner.os }}-composer-${{ matrix.swoole }}-${{ hashFiles('**/composer.json') }}
-#      - name: Prepare
-#        uses: ./.github/actions/ci-prepare
-#        with:
-#          env: ${{ env.ENV_SERVICE }}
-#      - name: Test
-#        run: docker exec ${ENV_SERVICE} composer test
-#      - name: Test swoole
-#        run: docker exec ${ENV_SERVICE} composer test-swoole
-#      - name: Test workerman
-#        run: docker exec ${ENV_SERVICE} composer test-workerman
-#      - name: Test workerman-gateway
-#        run: docker exec ${ENV_SERVICE} composer test-workerman-gateway
-#      - name: Test fpm
-#        run: docker exec ${ENV_SERVICE} composer test-fpm
-#      - name: Test jwt
-#        run: docker exec ${ENV_SERVICE} composer test-jwt
-#      - name: Test queue
-#        run: docker exec ${ENV_SERVICE} composer test-queue
-#      - name: Test amqp
-#        run: docker exec ${ENV_SERVICE} composer test-amqp
-#      - name: Test kafka
-#        run: docker exec ${ENV_SERVICE} composer test-kafka
-#      - name: Test grpc
-#        run: docker exec ${ENV_SERVICE} composer test-grpc
-#      - name: Test snowflake
-#        run: docker exec ${ENV_SERVICE} composer test-snowflake
-#      - name: Test mqtt
-#        run: docker exec ${ENV_SERVICE} composer test-mqtt
-#      - name: Test smarty
-#        run: docker exec ${ENV_SERVICE} composer test-smarty
-#      - name: Test pgsql
-#        run: docker exec ${ENV_SERVICE} composer test-pgsql
-#      - name: Print logs
-#        if: failure()
-#        run: docker exec ${ENV_SERVICE} php .github/print-logs.php
+  ci-php8-jit:
+    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false
+      matrix:
+        swoole: [4.7-php8.0]
+        mysql: [8.0]
+    env:
+      PHP_JIT: yes
+      ENV_SERVICE: swoole-php8
+      PHP_IMAGE: ghcr.io/nhzex/php-docker2:${{ matrix.swoole }}
+      MYSQL_DOCKER_VERSION: ${{ matrix.mysql }}
+      REDIS_SERVER_HOST: redis
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: /tmp/composer
+          key: ${{ runner.os }}-composer-${{ matrix.swoole }}-${{ hashFiles('**/composer.json') }}
+      - name: Prepare
+        uses: ./.github/actions/ci-prepare
+        with:
+          env: ${{ env.ENV_SERVICE }}
+      - name: Test
+        run: docker exec ${ENV_SERVICE} composer test
+      - name: Test swoole
+        run: docker exec ${ENV_SERVICE} composer test-swoole
+      - name: Test workerman
+        run: docker exec ${ENV_SERVICE} composer test-workerman
+      - name: Test workerman-gateway
+        run: docker exec ${ENV_SERVICE} composer test-workerman-gateway
+      - name: Test fpm
+        run: docker exec ${ENV_SERVICE} composer test-fpm
+      - name: Test jwt
+        run: docker exec ${ENV_SERVICE} composer test-jwt
+      - name: Test queue
+        run: docker exec ${ENV_SERVICE} composer test-queue
+      - name: Test amqp
+        run: docker exec ${ENV_SERVICE} composer test-amqp
+      - name: Test kafka
+        run: docker exec ${ENV_SERVICE} composer test-kafka
+      - name: Test grpc
+        run: docker exec ${ENV_SERVICE} composer test-grpc
+      - name: Test snowflake
+        run: docker exec ${ENV_SERVICE} composer test-snowflake
+      - name: Test mqtt
+        run: docker exec ${ENV_SERVICE} composer test-mqtt
+      - name: Test smarty
+        run: docker exec ${ENV_SERVICE} composer test-smarty
+      - name: Test pgsql
+        run: docker exec ${ENV_SERVICE} composer test-pgsql
+      - name: Print logs
+        if: failure()
+        run: docker exec ${ENV_SERVICE} php .github/print-logs.php
 
 #  ci-php:
 #    runs-on: ubuntu-20.04
