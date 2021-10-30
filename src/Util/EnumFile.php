@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Imi\Util;
 
 use function array_flip;
@@ -47,7 +49,7 @@ class EnumFile implements \IteratorAggregate
         {
             if ('.' !== $file && '..' !== $file)
             {
-                $item = new \SplFileInfo($this->dirPath . DIRECTORY_SEPARATOR . $file);
+                $item = new \SplFileInfo($this->dirPath . \DIRECTORY_SEPARATOR . $file);
                 $fullPath = $item->getPathname();
                 if (null !== $this->pattern && !preg_match($this->pattern, $fullPath))
                 {
