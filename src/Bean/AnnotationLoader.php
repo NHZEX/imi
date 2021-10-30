@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Imi\Bean;
 
 use Imi\Main\Helper as MainHelper;
+use Imi\Util\EnumFile;
 use Imi\Util\File;
 use Imi\Util\Imi;
 
@@ -71,9 +72,9 @@ class AnnotationLoader
         foreach ($namespacePaths as $path)
         {
             $pathLength = \strlen($path);
-            foreach (File::enumFile($path, $pattern, ['php']) as $filePath)
+            foreach (new EnumFile($path, $pattern, ['php']) as $file)
             {
-                $path = $filePath->getFullPath();
+                $path = $file->getPathname();
                 $diffPath = substr($path, $pathLength);
                 if (isset($diffPath[0]) && \DIRECTORY_SEPARATOR === $diffPath[0])
                 {
