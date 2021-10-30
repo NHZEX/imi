@@ -2,17 +2,10 @@
 
 namespace Imi\Util;
 
-use Exception;
-use Imi\Util\File\FileEnumItem;
-use Traversable;
 use function array_flip;
-use function array_map;
 use function closedir;
-use function implode;
 use function is_dir;
-use function is_null;
 use function opendir;
-use function pathinfo;
 use function preg_match;
 use function readdir;
 
@@ -22,13 +15,13 @@ class EnumFile implements \IteratorAggregate
 
     private ?string $pattern;
 
-    private ?string $extensionNamesPattern = null;
+    private array $extensionNamesMap = [];
 
     public function __construct(string $dirPath, ?string $pattern = null, array $extensionNames = [])
     {
         if (!empty($extensionNames))
         {
-            $this->extensionNamesPattern = '/\\.(' . implode('|', $extensionNames) . ')$/';
+            $this->extensionNamesMap = array_flip($extensionNames);
         }
         $this->dirPath = $dirPath;
         $this->pattern = $pattern;
@@ -54,28 +47,31 @@ class EnumFile implements \IteratorAggregate
         {
             if ('.' !== $file && '..' !== $file)
             {
-                $item = new FileEnumItem($this->dirPath, $file);
-                $fullPath = $item->getFullPath();
+                $item = new \SplFileInfo($this->dirPath . DIRECTORY_SEPARATOR . $file);
+                $fullPath = $item->getPathname();
                 if (null !== $this->pattern && !preg_match($this->pattern, $fullPath))
                 {
                     continue;
                 }
-                if (null === $this->extensionNamesPattern || preg_match($this->extensionNamesPattern, $item->getFileName()))
-                {
-                    yield $item;
-                }
-                if ($item->getContinue() && is_dir($fullPath))
+                if ($item->isDir())
                 {
                     $it = clone $this;
                     $it->dirPath = $fullPath;
                     yield from $it;
+                }
+                elseif (empty($this->extensionNamesMap) || isset($this->extensionNamesMap[$item->getExtension()]))
+                {
+                    yield $item;
                 }
             }
         }
         closedir($dh);
     }
 
-    public function getIterator(): Traversable
+    /**
+     * @return iterable<\SplFileInfo>
+     */
+    public function getIterator()
     {
         return $this->enumFile();
     }
