@@ -17,5 +17,8 @@
         "psr-4": {
             "Imi\\SwooleTracker\\Example\\": "example/"
         }
+    },
+    "config": {
+        "optimize-autoloader": true
     }
 }

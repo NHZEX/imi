@@ -19,5 +19,8 @@
         "psr-4": {
             "Imi\\RoadRunner\\Test\\": "tests/unit/"
         }
+    },
+    "config": {
+        "optimize-autoloader": true
     }
 }

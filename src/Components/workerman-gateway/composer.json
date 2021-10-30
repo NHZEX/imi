@@ -19,5 +19,8 @@
         "psr-4": {
             "Imi\\WorkermanGateway\\Test\\": "tests/unit/"
         }
+    },
+    "config": {
+        "optimize-autoloader": true
     }
 }

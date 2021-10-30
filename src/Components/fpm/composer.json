@@ -16,5 +16,8 @@
         "psr-4": {
             "Imi\\Fpm\\Test\\": "tests/"
         }
+    },
+    "config": {
+        "optimize-autoloader": true
     }
 }

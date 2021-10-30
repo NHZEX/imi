@@ -18,5 +18,8 @@
             "Imi\\Pgsql\\Test\\": "tests/"
         }
     },
-    "scripts": {}
+    "scripts": {},
+    "config": {
+        "optimize-autoloader": true
+    }
 }

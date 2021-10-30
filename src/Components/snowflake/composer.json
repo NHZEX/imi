@@ -17,5 +17,8 @@
             "Imi\\Snowflake\\Test\\": "tests/"
         }
     },
-    "scripts": {}
+    "scripts": {},
+    "config": {
+        "optimize-autoloader": true
+    }
 }

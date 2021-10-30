@@ -12,5 +12,8 @@
         "psr-4": {
             "Imi\\Rpc\\": "src/"
         }
+    },
+    "config": {
+        "optimize-autoloader": true
     }
 }

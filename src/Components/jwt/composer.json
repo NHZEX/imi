@@ -17,5 +17,8 @@
             "Imi\\JWT\\Test\\": "tests/"
         }
     },
-    "scripts": {}
+    "scripts": {},
+    "config": {
+        "optimize-autoloader": true
+    }
 }

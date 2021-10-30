@@ -12,5 +12,8 @@
             "Imi\\AC\\": "src/",
             "Imi\\AC\\Test\\": "test/"
         }
+    },
+    "config": {
+        "optimize-autoloader": true
     }
 }

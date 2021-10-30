@@ -37,5 +37,8 @@
                 "redis"
             ]
         }
+    },
+    "config": {
+        "optimize-autoloader": true
     }
 }

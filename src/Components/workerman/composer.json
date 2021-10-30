@@ -23,5 +23,8 @@
     },
     "bin": [
         "bin/imi-workerman"
-    ]
+    ],
+    "config": {
+        "optimize-autoloader": true
+    }
 }

@@ -11,5 +11,8 @@
         "psr-4": {
             "Imi\\RateLimit\\": "src/"
         }
+    },
+    "config": {
+        "optimize-autoloader": true
     }
 }

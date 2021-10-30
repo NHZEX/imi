@@ -21,5 +21,8 @@
                 "Imi\\Smarty\\Test\\": "tests/unit/"
             }
         },
-        "scripts": {}
+        "scripts": {},
+        "config": {
+            "optimize-autoloader": true
+        }
     }

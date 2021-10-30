@@ -34,6 +34,9 @@
         },
         "files": [
             "src/functions.php"
+        ],
+        "exclude-from-classmap": [
+            "/src/Components"
         ]
     },
     "autoload-dev": {

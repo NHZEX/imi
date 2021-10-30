@@ -30,5 +30,8 @@
         "pre-update-cmd": "Imi\\Grpc\\Dev\\Dev::preUpdate",
         "post-install-cmd": "Imi\\Grpc\\Dev\\Dev::postUpdate",
         "post-update-cmd": "Imi\\Grpc\\Dev\\Dev::postUpdate"
+    },
+    "config": {
+        "optimize-autoloader": true
     }
 }
