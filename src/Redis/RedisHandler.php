@@ -397,6 +397,18 @@ class RedisHandler
     }
 
     /**
+     * @param class-string<RedisLua> $class
+     * @param array  $keys
+     * @param array  $argv
+     * @return mixed
+     */
+    public function evalLua(string $class, array $keys, array $argv = [])
+    {
+        $lua = new $class($this);
+        return $lua($keys, $argv);
+    }
+
+    /**
      * scan.
      *
      * @param mixed $strNode

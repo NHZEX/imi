@@ -244,6 +244,7 @@ use Imi\Pool\PoolManager;
  * @method static mixed zSize($key)
  * @method static mixed zUnion($key, array $keys, ?array $weights = null, $aggregate = null)
  * @method static mixed evalEx(string $script, $args = null, $num_keys = null)
+ * @method static mixed evalLua(string $class, array $keys, array $argv = [])
  * @method static array hMGetAll(array $keys)
  * @method static mixed scanEach(?string $pattern = null, int $count = 0)
  * @method static mixed hscanEach(string $key, ?string $pattern = null, int $count = 0)
