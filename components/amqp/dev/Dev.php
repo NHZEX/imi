@@ -57,7 +57,8 @@ class Dev
 
         foreach (InstalledVersions::getInstalledPackages() as $name)
         {
-            if ($componentsName === $name) {
+            if ($componentsName === $name)
+            {
                 continue;
             }
             $componentDir = \dirname($dir) . '/' . substr($name, 11);
