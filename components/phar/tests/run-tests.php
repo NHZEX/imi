@@ -12,14 +12,14 @@ const STARTUP_MAX_WAIT = 30;
 
 const LOCAL_REPOSITORIES = [
     'imiphp/imi'            => '',
-    'imiphp/imi-macro'      => 'src/Components/macro',
-    'imiphp/imi-swoole'     => 'src/Components/swoole',
-    'imiphp/imi-workerman'  => 'src/Components/workerman',
-    'imiphp/imi-roadrunner' => 'src/Components/roadrunner',
-    'imiphp/imi-phar'       => 'src/Components/phar',
+    'imiphp/imi-macro'      => 'components/macro',
+    'imiphp/imi-swoole'     => 'components/swoole',
+    'imiphp/imi-workerman'  => 'components/workerman',
+    'imiphp/imi-roadrunner' => 'components/roadrunner',
+    'imiphp/imi-phar'       => 'components/phar',
 ];
 
-$srcSourceDir = \dirname(__DIR__, 4);
+$srcSourceDir = \dirname(__DIR__, 3);
 $srcMirrorDir = '/tmp/mirror-imi';
 $testProjectSrc = __DIR__ . '/project';
 $testProjectDir = '/tmp/imi-phar-test';
@@ -30,9 +30,9 @@ rsync -av \
  --exclude '.git' --exclude '.idea' --exclude '*.log' \
  --exclude '.runtime' --exclude '*/.runtime' \
  --exclude 'dev' --exclude 'doc' --exclude 'mddoc' \
- --exclude 'composer.lock' --exclude 'src/Components/*/composer.lock' \
- --exclude 'vendor' --exclude 'src/Components/*/vendor' \
- --exclude 'tests' --exclude 'src/Components/*/tests' \
+ --exclude 'composer.lock' --exclude 'components/*/composer.lock' \
+ --exclude 'vendor' --exclude 'components/*/vendor' \
+ --exclude 'tests' --exclude 'components/*/tests' \
  --delete {$srcSourceDir}/ {$srcMirrorDir}
 SHELL;
 Process::fromShellCommandline($rsyncImiSrc)->mustRun();
