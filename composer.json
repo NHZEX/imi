@@ -108,7 +108,7 @@
         "test-mqtt": "@php components/swoole/bin/swoole-phpunit -c components/mqtt/tests/phpunit.xml",
         "test-smarty": "@php components/smarty/vendor/bin/phpunit -c components/smarty/tests/phpunit.xml",
         "test-pgsql": "@php components/swoole/bin/swoole-phpunit -c components/pgsql/tests/phpunit.xml",
-        "test-phar": "@php cmponents/phar/tests/run-tests.php",
+        "test-phar": "@php components/phar/tests/run-tests.php",
         "test-components": [
             "@composer test-swoole",
             "@composer test-workerman",
