@@ -21,8 +21,8 @@
             "Imi\\Hprose\\Dev\\": "dev/"
         },
         "files": [
-            "../../../vendor/autoload.php",
-            "../../../dev/try-include-swoole.php"
+            "../../vendor/autoload.php",
+            "../../dev/try-include-swoole.php"
         ]
     },
     "scripts": {

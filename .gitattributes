@@ -10,7 +10,7 @@
 /mddoc export-ignore
 /split-repository export-ignore
 /dev export-ignore
-/src/Components export-ignore
+/components export-ignore
 /.editorconfig export-ignore
 /.markdownlint.json export-ignore
 /.php-cs-fixer.php export-ignore

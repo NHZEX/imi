@@ -107,73 +107,73 @@ function getBranch(): string
 }
 
 static $storeRepoMap = [
-    'src/Components/swoole'            => [
+    'components/swoole'            => [
         'git@github.com:imiphp/imi-swoole',
     ],
-    'src/Components/workerman'         => [
+    'components/workerman'         => [
         'git@github.com:imiphp/imi-workerman',
     ],
-    'src/Components/fpm'               => [
+    'components/fpm'               => [
         'git@github.com:imiphp/imi-fpm',
     ],
-    'src/Components/workerman-gateway' => [
+    'components/workerman-gateway' => [
         'git@github.com:imiphp/imi-workerman-gateway',
     ],
-    'src/Components/access-control'    => [
+    'components/access-control'    => [
         'git@github.com:imiphp/imi-access-control',
     ],
-    'src/Components/amqp'              => [
+    'components/amqp'              => [
         'git@github.com:imiphp/imi-amqp',
     ],
-    'src/Components/apidoc'            => [
+    'components/apidoc'            => [
         'git@github.com:imiphp/imi-apidoc',
     ],
-    'src/Components/grpc'              => [
+    'components/grpc'              => [
         'git@github.com:imiphp/imi-grpc',
     ],
-    'src/Components/hprose'            => [
+    'components/hprose'            => [
         'git@github.com:imiphp/imi-hprose',
     ],
-    'src/Components/jwt'               => [
+    'components/jwt'               => [
         'git@github.com:imiphp/imi-jwt',
     ],
-    'src/Components/kafka'             => [
+    'components/kafka'             => [
         'git@github.com:imiphp/imi-kafka',
     ],
-    'src/Components/mqtt'              => [
+    'components/mqtt'              => [
         'git@github.com:imiphp/imi-mqtt',
     ],
-    'src/Components/queue'             => [
+    'components/queue'             => [
         'git@github.com:imiphp/imi-queue',
     ],
-    'src/Components/rate-limit'        => [
+    'components/rate-limit'        => [
         'git@github.com:imiphp/imi-rate-limit',
     ],
-    'src/Components/rpc'               => [
+    'components/rpc'               => [
         'git@github.com:imiphp/imi-rpc',
     ],
-    'src/Components/shared-memory'     => [
+    'components/shared-memory'     => [
         'git@github.com:imiphp/imi-shared-memory.git',
     ],
-    'src/Components/smarty'            => [
+    'components/smarty'            => [
         'git@github.com:imiphp/imi-smarty',
     ],
-    'src/Components/snowflake'         => [
+    'components/snowflake'         => [
         'git@github.com:imiphp/imi-snowflake',
     ],
-    'src/Components/swoole-tracker'    => [
+    'components/swoole-tracker'    => [
         'git@github.com:imiphp/imi-swoole-tracker',
     ],
-    'src/Components/pgsql'             => [
+    'components/pgsql'             => [
         'git@github.com:imiphp/imi-pgsql',
     ],
-    'src/Components/roadrunner'        => [
+    'components/roadrunner'        => [
         'git@github.com:imiphp/imi-roadrunner',
     ],
-    'src/Components/macro'             => [
+    'components/macro'             => [
         'git@github.com:imiphp/imi-macro',
     ],
-    'src/Components/phar'              => [
+    'components/phar'              => [
         'git@github.com:imiphp/imi-phar',
     ],
 ];

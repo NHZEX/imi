@@ -14,7 +14,7 @@
     },
     "autoload-dev": {
         "files": [
-            "../../../vendor/autoload.php"
+            "../../vendor/autoload.php"
         ]
     },
     "minimum-stability": "dev",

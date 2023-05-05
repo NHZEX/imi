@@ -19,7 +19,7 @@ function getRectorConfigCallback(string $path): callable
 
         $rectorConfig->skip([
             '*/vendor/*',
-            $path . '/src/Components/*',
+            $path . '/components/*',
             \Rector\Php71\Rector\FuncCall\CountOnNullRector::class,
             \Rector\Php73\Rector\FuncCall\JsonThrowOnErrorRector::class,
             \Rector\Php74\Rector\LNumber\AddLiteralSeparatorToNumberRector::class,

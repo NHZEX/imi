@@ -15,8 +15,8 @@
     },
     "autoload-dev": {
         "files": [
-            "../../../vendor/autoload.php",
-            "../../../dev/try-include-swoole.php"
+            "../../vendor/autoload.php",
+            "../../dev/try-include-swoole.php"
         ]
     },
     "minimum-stability": "dev",

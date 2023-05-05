@@ -24,8 +24,8 @@
             "Imi\\Grpc\\Dev\\": "dev/"
         },
         "files": [
-            "../../../vendor/autoload.php",
-            "../../../dev/try-include-swoole.php",
+            "../../vendor/autoload.php",
+            "../../dev/try-include-swoole.php",
             "../rpc/vendor/autoload.php"
         ]
     },

@@ -21,8 +21,8 @@
             "Imi\\Queue\\Dev\\": "dev/"
         },
         "files": [
-            "../../../vendor/autoload.php",
-            "../../../dev/try-include-swoole.php",
+            "../../vendor/autoload.php",
+            "../../dev/try-include-swoole.php",
             "../workerman/vendor/autoload.php"
         ]
     },

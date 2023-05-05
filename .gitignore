@@ -8,7 +8,7 @@ composer.lock
 *.cache
 /mddoc/vendor
 *.lock
-/src/Components/*/vendor
+/components/*/vendor
 /split-repository/vendor
 /.vscode
 *.pid

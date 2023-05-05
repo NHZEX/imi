@@ -38,14 +38,14 @@ foreach ([
 ] as $name)
 {
     echo '[Swoole ', $name, ']', \PHP_EOL;
-    $fileName = \dirname(__DIR__) . '/src/Components/swoole/tests/unit/' . $name . '/logs/cli.log';
+    $fileName = \dirname(__DIR__) . '/components/swoole/tests/unit/' . $name . '/logs/cli.log';
     if (is_file($fileName))
     {
         echo file_get_contents($fileName), \PHP_EOL;
     }
     else
     {
-        $fileName = \dirname(__DIR__) . '/src/Components/swoole/tests/unit/' . $name . '/logs/log-' . $date . '.log';
+        $fileName = \dirname(__DIR__) . '/components/swoole/tests/unit/' . $name . '/logs/log-' . $date . '.log';
         if (is_file($fileName))
         {
             echo file_get_contents($fileName), \PHP_EOL;
@@ -63,14 +63,14 @@ foreach ([
 ] as $name)
 {
     echo '[Workerman ', $name, ']', \PHP_EOL;
-    $fileName = \dirname(__DIR__) . '/src/Components/workerman/tests/unit/' . $name . '/logs/cli.log';
+    $fileName = \dirname(__DIR__) . '/components/workerman/tests/unit/' . $name . '/logs/cli.log';
     if (is_file($fileName))
     {
         echo file_get_contents($fileName), \PHP_EOL;
     }
     else
     {
-        $fileName = \dirname(__DIR__) . '/src/Components/workerman/tests/unit/' . $name . '/logs/log-' . $date . '.log';
+        $fileName = \dirname(__DIR__) . '/components/workerman/tests/unit/' . $name . '/logs/log-' . $date . '.log';
         if (is_file($fileName))
         {
             echo file_get_contents($fileName), \PHP_EOL;
@@ -83,14 +83,14 @@ foreach ([
 }
 
 echo '[FPM]', \PHP_EOL;
-$fileName = \dirname(__DIR__) . '/src/Components/fpm/tests/HttpServer/logs/cli.log';
+$fileName = \dirname(__DIR__) . '/components/fpm/tests/HttpServer/logs/cli.log';
 if (is_file($fileName))
 {
     echo file_get_contents($fileName), \PHP_EOL;
 }
 else
 {
-    $fileName = \dirname(__DIR__) . '/src/Components/fpm/tests/HttpServer/logs/log-' . $date . '.log';
+    $fileName = \dirname(__DIR__) . '/components/fpm/tests/HttpServer/logs/log-' . $date . '.log';
     if (is_file($fileName))
     {
         echo file_get_contents($fileName), \PHP_EOL;
@@ -102,7 +102,7 @@ else
 }
 
 echo '[WorkermanGateway]', \PHP_EOL;
-$fileName = \dirname(__DIR__) . '/src/Components/workerman-gateway/tests/unit/AppServer/logs/log-' . $date . '.log';
+$fileName = \dirname(__DIR__) . '/components/workerman-gateway/tests/unit/AppServer/logs/log-' . $date . '.log';
 if (is_file($fileName))
 {
     echo file_get_contents($fileName), \PHP_EOL;
@@ -113,14 +113,14 @@ else
 }
 
 echo '[RoadRunner]', \PHP_EOL;
-$fileName = \dirname(__DIR__) . '/src/Components/roadrunner/tests/unit/HttpServer/logs/cli.log';
+$fileName = \dirname(__DIR__) . '/components/roadrunner/tests/unit/HttpServer/logs/cli.log';
 if (is_file($fileName))
 {
     echo file_get_contents($fileName), \PHP_EOL;
 }
 else
 {
-    $fileName = \dirname(__DIR__) . '/src/Components/roadrunner/tests/unit/HttpServer/logs/log-' . $date . '.log';
+    $fileName = \dirname(__DIR__) . '/components/roadrunner/tests/unit/HttpServer/logs/log-' . $date . '.log';
     if (is_file($fileName))
     {
         echo file_get_contents($fileName), \PHP_EOL;
@@ -131,7 +131,7 @@ else
     }
 }
 
-$dir = \dirname(__DIR__) . '/src/Components/';
+$dir = \dirname(__DIR__) . '/components/';
 foreach ([
     'grpc',
     'mqtt',

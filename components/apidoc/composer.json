@@ -22,7 +22,7 @@
             "Imi\\Server\\ApiDoc\\": "src/imi/Server/ApiDoc/"
         },
         "files": [
-            "../../../vendor/autoload.php"
+            "../../vendor/autoload.php"
         ]
     },
     "scripts": {},

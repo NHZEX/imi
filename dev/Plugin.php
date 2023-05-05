@@ -13,7 +13,7 @@ class Plugin
 
     public static function dev(): void
     {
-        $componentsDir = \dirname(__DIR__) . '/src/Components';
+        $componentsDir = \dirname(__DIR__) . '/components';
         /** @var Process[] $readyProcesses */
         $readyProcesses = [];
         foreach (new \FilesystemIterator($componentsDir, \FilesystemIterator::SKIP_DOTS) as $dir)

@@ -5,44 +5,44 @@ cd $__DIR__
 
 echo "core" && ./vendor/bin/phpstan analyse --memory-limit 1G
 
-echo "access-control" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=src/Components/access-control/vendor/autoload.php src/Components/access-control
+echo "access-control" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=components/access-control/vendor/autoload.php components/access-control
 
-echo "amqp" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=src/Components/amqp/vendor/autoload.php src/Components/amqp
+echo "amqp" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=components/amqp/vendor/autoload.php components/amqp
 
-echo "apidoc" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=src/Components/apidoc/vendor/autoload.php src/Components/apidoc
+echo "apidoc" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=components/apidoc/vendor/autoload.php components/apidoc
 
-echo "fpm" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=src/Components/fpm/vendor/autoload.php src/Components/fpm
+echo "fpm" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=components/fpm/vendor/autoload.php components/fpm
 
-echo "grpc" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=src/Components/grpc/vendor/autoload.php src/Components/grpc
+echo "grpc" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=components/grpc/vendor/autoload.php components/grpc
 
-echo "jwt" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=src/Components/jwt/vendor/autoload.php src/Components/jwt
+echo "jwt" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=components/jwt/vendor/autoload.php components/jwt
 
-echo "kafka" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=src/Components/kafka/vendor/autoload.php src/Components/kafka
+echo "kafka" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=components/kafka/vendor/autoload.php components/kafka
 
-echo "mqtt" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=src/Components/mqtt/vendor/autoload.php src/Components/mqtt
+echo "mqtt" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=components/mqtt/vendor/autoload.php components/mqtt
 
-echo "pgsql" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=src/Components/pgsql/vendor/autoload.php src/Components/pgsql
+echo "pgsql" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=components/pgsql/vendor/autoload.php components/pgsql
 
-echo "queue" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=src/Components/queue/vendor/autoload.php src/Components/queue
+echo "queue" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=components/queue/vendor/autoload.php components/queue
 
-echo "rate-limit" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=src/Components/rate-limit/vendor/autoload.php src/Components/rate-limit
+echo "rate-limit" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=components/rate-limit/vendor/autoload.php components/rate-limit
 
-echo "roadrunner" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=src/Components/roadrunner/vendor/autoload.php src/Components/roadrunner
+echo "roadrunner" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=components/roadrunner/vendor/autoload.php components/roadrunner
 
-echo "rpc" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=src/Components/rpc/vendor/autoload.php src/Components/rpc
+echo "rpc" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=components/rpc/vendor/autoload.php components/rpc
 
-echo "shared-memory" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=src/Components/shared-memory/vendor/autoload.php src/Components/shared-memory
+echo "shared-memory" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=components/shared-memory/vendor/autoload.php components/shared-memory
 
-echo "smarty" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=src/Components/smarty/vendor/autoload.php src/Components/smarty
+echo "smarty" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=components/smarty/vendor/autoload.php components/smarty
 
-echo "snowflake" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=src/Components/snowflake/vendor/autoload.php src/Components/snowflake
+echo "snowflake" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=components/snowflake/vendor/autoload.php components/snowflake
 
-echo "swoole" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=src/Components/swoole/vendor/autoload.php src/Components/swoole
+echo "swoole" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=components/swoole/vendor/autoload.php components/swoole
 
-echo "swoole-tracker" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=src/Components/swoole-tracker/vendor/autoload.php src/Components/swoole-tracker
+echo "swoole-tracker" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=components/swoole-tracker/vendor/autoload.php components/swoole-tracker
 
-echo "workerman" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=src/Components/workerman/vendor/autoload.php src/Components/workerman
+echo "workerman" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=components/workerman/vendor/autoload.php components/workerman
 
-echo "workerman-gateway" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=src/Components/workerman-gateway/vendor/autoload.php src/Components/workerman-gateway
+echo "workerman-gateway" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=components/workerman-gateway/vendor/autoload.php components/workerman-gateway
 
-echo "macro" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=src/Components/macro/vendor/autoload.php src/Components/macro
+echo "macro" && ./vendor/bin/phpstan analyse --memory-limit 1G --configuration=phpstan-components.neon --autoload-file=components/macro/vendor/autoload.php components/macro

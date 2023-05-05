@@ -12,7 +12,7 @@ parameters:
 
     excludePaths:
         - */vendor/*
-        - src/Components
+        - components
         - src/Config/DotEnv/EntryParser.php
         - src/Config/DotEnv/Parser.php
         - src/Util/File/FileFinder.php

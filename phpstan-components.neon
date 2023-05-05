@@ -4,15 +4,15 @@ parameters:
     phpVersion: 80000
 
     paths:
-        - src/Components
+        - components
 
     excludePaths:
         - */vendor/*
-        - src/Components/grpc/example/grpc
-        - src/Components/smarty/src/smarty-plugins
-        - src/Components/swoole/src/Process/Process.php
-        - src/Components/pgsql/src/Db/Drivers/SwooleNew
-        - src/Components/phar/src/Ignore
+        - components/grpc/example/grpc
+        - components/smarty/src/smarty-plugins
+        - components/swoole/src/Process/Process.php
+        - components/pgsql/src/Db/Drivers/SwooleNew
+        - components/phar/src/Ignore
 
     bootstrapFiles:
         - vendor/autoload.php
@@ -44,11 +44,11 @@ parameters:
         -
             message: '#class .+ not found#'
             paths:
-                - src/Components/jwt/*
+                - components/jwt/*
         -
             message: '#Lcobucci#'
             paths:
-                - src/Components/jwt/*
+                - components/jwt/*
 
 services:
     fileFinderAnalyse:

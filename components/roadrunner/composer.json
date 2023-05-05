@@ -20,7 +20,7 @@
             "Imi\\RoadRunner\\Test\\": "tests/unit/"
         },
         "files": [
-            "../../../vendor/autoload.php"
+            "../../vendor/autoload.php"
         ]
     },
     "minimum-stability": "dev",

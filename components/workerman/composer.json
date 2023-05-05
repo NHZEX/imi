@@ -21,7 +21,7 @@
             "Imi\\Workerman\\Test\\": "tests/unit/"
         },
         "files": [
-            "../../../vendor/autoload.php"
+            "../../vendor/autoload.php"
         ]
     },
     "bin": [
