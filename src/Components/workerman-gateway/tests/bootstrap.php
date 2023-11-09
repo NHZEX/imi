@@ -151,13 +151,12 @@ function runTestServer(string $name, array $options): void
         $p->start(static function ($type, $buffer) use ($serviceName): void {
             echo implode("\n", array_map(static fn ($str) => ">> [{$serviceName}][{$type}] {$str}", explode("\n", $buffer)));
         });
+        $servicePool[$serviceName] = $p;
         if (!$p->isRunning())
         {
             // throw new ProcessFailedException($p);
             throw new \RuntimeException("{$serviceName} start failed");
         }
-
-        $servicePool[$serviceName] = $p;
     }
 
 
