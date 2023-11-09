@@ -112,83 +112,93 @@ function startServer(): void
             runTestServer('SwooleServer', $servers['SwooleServer']);
             break;
         case 'workerman':
-            runTestServer('WorkermanServer', $servers['WorkermanServer']);
+            runTestServer('AppServer', $servers['WorkermanServer']);
             break;
         default:
             throw new \RuntimeException(sprintf('Unknown --testsuite %s', $input->getParameterOption('--testsuite')));
     }
 
-    if ('/' === \DIRECTORY_SEPARATOR)
-    {
-        register_shutdown_function(static function (): void {
-            echo 'Stoping WorkermanServers...', \PHP_EOL;
-            if ('Darwin' === \PHP_OS)
-            {
-                $keyword = 'workerman/start';
-            }
-            else
-            {
-                $keyword = 'imi:master';
-            }
-            ttyExec(<<<CMD
-            kill -15 `ps -ef|grep "{$keyword}"|grep -v grep|awk '{print $2}'`
-            CMD);
-            echo 'WorkermanServers stoped!', \PHP_EOL, \PHP_EOL;
-        });
-    }
+    //    if ('/' === \DIRECTORY_SEPARATOR)
+    //    {
+    //        register_shutdown_function(static function (): void {
+    //            echo 'Stoping WorkermanServers...', \PHP_EOL;
+    //            if ('Darwin' === \PHP_OS)
+    //            {
+    //                $keyword = 'workerman/start';
+    //            }
+    //            else
+    //            {
+    //                $keyword = 'imi:master';
+    //            }
+    //            ttyExec(<<<CMD
+    //            kill -15 `ps -ef|grep "{$keyword}"|grep -v grep|awk '{print $2}'`
+    //            CMD);
+    //            echo 'WorkermanServers stoped!', \PHP_EOL, \PHP_EOL;
+    //        });
+    //    }
 }
+
+global $servicePool;
+/** @var array<string, \Symfony\Component\Process\Process> $servicePool */
+$servicePool = [];
+const TEST_ROOT_DIR = __DIR__ . \DIRECTORY_SEPARATOR . 'unit';
 
 function runTestServer(string $name, array $options): void
 {
-    // start server
-    if ('\\' === \DIRECTORY_SEPARATOR)
-    {
-        $cmd = 'powershell ' . $options['start'];
-    }
-    else
-    {
-        $cmd = 'nohup ' . $options['start'] . ' > /dev/null 2>&1';
-    }
-    echo "Starting {$name}...", \PHP_EOL;
-    shell_exec("{$cmd}");
+    global $servicePool;
 
-    if (isset($options['stop']))
+    $projectDir = TEST_ROOT_DIR . \DIRECTORY_SEPARATOR . $name;
+
+    $commands = [
+        \PHP_BINARY,
+        'bin/workerman',
+    ];
+
+    $env = [];
+
+    foreach (['websocket', 'register', 'gateway', 'http'] as $serviceName)
     {
-        register_shutdown_function(static function () use ($name, $options): void {
-            // stop server
-            $cmd = $options['stop'];
-            if ('\\' === \DIRECTORY_SEPARATOR)
-            {
-                $cmd = 'powershell ' . $cmd;
-            }
-            echo "Stoping {$name}...", \PHP_EOL;
-            shell_exec("{$cmd}");
-            echo "{$name} stoped!", \PHP_EOL, \PHP_EOL;
+        $serviceCmd = [
+            ...$commands,
+            'workerman/start',
+            '--name',
+            $serviceName,
+        ];
+
+        echo "Starting {$name} {$serviceName}...", \PHP_EOL;
+        echo '  >', implode(' ', $serviceCmd), \PHP_EOL;
+        $p = new \Symfony\Component\Process\Process($serviceCmd, $projectDir, $env, null, 120);
+        $p->start(static function ($type, $buffer) use ($serviceName): void {
+            echo implode("\n", array_map(static fn ($str) => ">> [{$serviceName}][{$type}] {$str}", explode("\n", $buffer)));
         });
+        if (!$p->isRunning())
+        {
+            // throw new ProcessFailedException($p);
+            throw new \RuntimeException("{$serviceName} start failed");
+        }
+
+        if (false === $p->waitUntil(static fn (): bool => true))
+        {
+            // throw new ProcessFailedException($p);
+            throw new \RuntimeException("{$name} start failed");
+        }
+
+        echo "Waiting {$serviceName} start...", \PHP_EOL;
+
+        $servicePool[$serviceName] = $p;
     }
 
-    if (isset($options['checkStatus']))
+    $checkStatuses = $options['checkStatus'];
+
+    foreach ($checkStatuses as $checkStatus)
     {
-        if (\is_array($options['checkStatus']))
+        if ($checkStatus())
         {
-            $checkStatuses = $options['checkStatus'];
+            echo "check {$checkStatus} success!", \PHP_EOL;
         }
         else
         {
-            $checkStatuses = [$options['checkStatus']];
-        }
-        foreach ($checkStatuses as $checkStatus)
-        {
-            if ($checkStatus())
-            {
-                echo "{$name} started!", \PHP_EOL;
-
-                return;
-            }
-            else
-            {
-                throw new \RuntimeException("{$name} start failed");
-            }
+            throw new \RuntimeException("check {$checkStatus} failed!");
         }
     }
 }
@@ -196,5 +206,15 @@ function runTestServer(string $name, array $options): void
 startServer();
 
 register_shutdown_function(static function (): void {
-    checkPorts([13000, 13002, 13004, 12900]);
+    global $servicePool;
+    foreach ($servicePool as $name => $p)
+    {
+        echo "Stopping {$name}...", \PHP_EOL;
+        $p->stop();
+        echo "{$name} stoped!", \PHP_EOL;
+    }
 });
+
+// register_shutdown_function(static function (): void {
+//    checkPorts([13000, 13002, 13004, 12900]);
+// });
