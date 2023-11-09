@@ -76,9 +76,6 @@ jobs:
         run: |
           echo "test_prepared=1" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
-      - name: Test
-        if: ${{ env.test_prepared && always() }}
-        run: composer test
       - name: Test workerman
         if: ${{ env.test_prepared && always() }}
         run: composer test-workerman

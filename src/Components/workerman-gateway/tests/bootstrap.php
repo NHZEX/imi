@@ -5,7 +5,6 @@ declare(strict_types=1);
 use Imi\Cli\ImiCommand;
 
 use function Imi\env;
-use function Imi\ttyExec;
 
 require \dirname(__DIR__) . '/vendor/autoload.php';
 
@@ -117,25 +116,6 @@ function startServer(): void
         default:
             throw new \RuntimeException(sprintf('Unknown --testsuite %s', $input->getParameterOption('--testsuite')));
     }
-
-    //    if ('/' === \DIRECTORY_SEPARATOR)
-    //    {
-    //        register_shutdown_function(static function (): void {
-    //            echo 'Stoping WorkermanServers...', \PHP_EOL;
-    //            if ('Darwin' === \PHP_OS)
-    //            {
-    //                $keyword = 'workerman/start';
-    //            }
-    //            else
-    //            {
-    //                $keyword = 'imi:master';
-    //            }
-    //            ttyExec(<<<CMD
-    //            kill -15 `ps -ef|grep "{$keyword}"|grep -v grep|awk '{print $2}'`
-    //            CMD);
-    //            echo 'WorkermanServers stoped!', \PHP_EOL, \PHP_EOL;
-    //        });
-    //    }
 }
 
 global $servicePool;
@@ -156,7 +136,7 @@ function runTestServer(string $name, array $options): void
 
     $env = [];
 
-    foreach (['websocket', 'register', 'gateway', 'http'] as $serviceName)
+    foreach (['register', 'websocket', 'gateway', 'http'] as $serviceName)
     {
         $serviceCmd = [
             ...$commands,
