@@ -157,15 +157,17 @@ function runTestServer(string $name, array $options): void
             throw new \RuntimeException("{$serviceName} start failed");
         }
 
-        if (false === $p->waitUntil(static fn (): bool => true))
-        {
-            // throw new ProcessFailedException($p);
-            throw new \RuntimeException("{$name} start failed");
-        }
-
-        echo "Waiting {$serviceName} start...", \PHP_EOL;
-
         $servicePool[$serviceName] = $p;
+    }
+
+
+    foreach ($servicePool  as $serviceName => $p)
+    {
+        echo "Waiting {$serviceName} start...", \PHP_EOL;
+        if (!$p->isRunning()) {
+            throw new \RuntimeException("{$serviceName} start failed");
+        }
+        echo  " > {$serviceName} is started!", \PHP_EOL;
     }
 
     $checkStatuses = $options['checkStatus'];
