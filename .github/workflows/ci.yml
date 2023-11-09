@@ -60,6 +60,20 @@ jobs:
         env:
           fail-fast: true
 
+      - name: Get composer cache directory
+        id: composer-cache
+        shell: pwsh
+        run: composer config cache-files-dir >> $env:GITHUB_OUTPUT
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ matrix.php }}-${{ hashFiles('*/composer.json', 'src/Components/*/composer.json') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-${{ matrix.php }}-
+            ${{ runner.os }}-composer-
+
       - name: Prepare
         run: |
           Write-Output "::group::Env prepare"
